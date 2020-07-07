@@ -99,14 +99,12 @@ jobs:
       - name: Build firmware
         run: |
           cd n1
-          mkdir out
-          cp ../lede/.config out/config.seed
           cp ../lede/bin/targets/*/*/*.tar.gz ./openwrt
           sudo ./make -d
           
-          cd out
           i=0
-          for x in $(ls -d */); do
+          cd out
+          for x in $(ls .); do
             cd $x
             filename=$(ls .)
             filename=${filename%.*}
@@ -127,17 +125,17 @@ jobs:
           name: ${{ env.firmware_2 }}
           path: ./n1/out/4.19.106
       
-      - name: Upload firmware @ kernel 5.4.43
+      - name: Upload firmware @ kernel 5.4.50
         uses: actions/upload-artifact@master
         with:
           name: ${{ env.firmware_3 }}
-          path: ./n1/out/5.4.43
+          path: ./n1/out/5.4.50
 
-#      - name: Upload config file
-#        uses: actions/upload-artifact@master
-#        with:
-#          name: config
-#          path: out/config.seed
+      - name: Upload config file
+        uses: actions/upload-artifact@master
+        with:
+          name: config
+          path: ./lede/.config
 
       - name: Upload Packages
         uses: actions/upload-artifact@master

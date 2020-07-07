@@ -131,11 +131,11 @@ jobs:
           name: ${{ env.firmware_3 }}
           path: ./n1/out/5.4.50
 
-      - name: Upload config file
-        uses: actions/upload-artifact@master
-        with:
-          name: config
-          path: ./lede/.config
+#      - name: Upload config file
+#        uses: actions/upload-artifact@master
+#        with:
+#          name: config
+#          path: ./lede/.config
 
       - name: Upload Packages
         uses: actions/upload-artifact@master

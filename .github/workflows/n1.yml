@@ -45,7 +45,7 @@ jobs:
           git clone https://github.com/tuanqing/mknop.git n1
           
           cd lede
-          git reset --hard 33f7cb735300bd9a099995236ed768c8925fec75
+          git reset --hard e0b2fde78ef821ee3d06fd685fd57151179f1861
 
       - name: Git Third Party Plugin
         run: |

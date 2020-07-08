@@ -43,6 +43,9 @@ jobs:
         run: |
           git clone https://github.com/coolsnowwolf/lede.git lede
           git clone https://github.com/tuanqing/mknop.git n1
+          
+          cd lede
+          git reset --hard 129f29e24ae1371b006c017b7bb84c9f69bfd099
 
       - name: Git Third Party Plugin
         run: |

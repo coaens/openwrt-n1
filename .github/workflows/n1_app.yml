@@ -1,4 +1,4 @@
-name: N1-OpenWrt-CI S
+name: N1-OpenWrt-CI APP
 
 on:
 #  push:
@@ -17,7 +17,7 @@ env:
 
 jobs:
   build_openwrt:
-    name: Build OpenWrt N1 S
+    name: Build OpenWrt N1 APP
     runs-on: ubuntu-18.04
     if: github.event.repository.owner.id == github.event.sender.id
 

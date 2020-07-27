@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
         with:
           ref: master
 
@@ -119,32 +119,26 @@ jobs:
             echo "::set-env name=firmware_$((++i))::$filename"
           done
 
-      - name: Upload firmware @ kernel 4.18.7
-        uses: actions/upload-artifact@master
-        with:
-          name: ${{ env.firmware_1 }}
-          path: ./n1/out/4.18.7
-      
       - name: Upload firmware @ kernel 4.19.106
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@main
         with:
           name: ${{ env.firmware_2 }}
           path: ./n1/out/4.19.106
-      
+
       - name: Upload firmware @ kernel 5.4.50
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@main
         with:
           name: ${{ env.firmware_3 }}
           path: ./n1/out/5.4.50
 
 #      - name: Upload config file
-#        uses: actions/upload-artifact@master
+#        uses: actions/upload-artifact@main
 #        with:
 #          name: config
 #          path: ./lede/.config
 
       - name: Upload Packages
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@main
         with:
           name: OpenWrt_N1_Packages
           path: ./lede/bin/packages/

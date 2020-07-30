@@ -54,8 +54,6 @@ jobs:
         run: |
           cd lede
           git clone https://github.com/tuanqing/install-program package/install-program
-          svn co https://github.com/tuanqing/lede-mod/trunk/lede patch
-          git apply patch/0002-distfeeds-use-mirrors.bfsu.edu.cn.patch
           
           sed -i 's/@LINUX_5_4/@!LINUX_4_9/g' ./package/lean/luci-app-flowoffload/Makefile
           sed -i 's/PKG_RELEASE:=19/PKG_RELEASE:=15/g' ./package/lean/luci-app-flowoffload/Makefile

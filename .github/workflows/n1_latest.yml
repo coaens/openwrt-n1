@@ -1,14 +1,15 @@
-name: N1-OpenWrt-CI
+name: N1-OpenWrt-CI L
 
 on:
 #  push:
 #    branches: 
 #      - master
+  schedule:
+    - cron: 0 20 */3 * *
 #  watch:
 #    types: started
   issues:
     types: edited
-
 
 env:
  SSH_ACTIONS: false
@@ -16,14 +17,13 @@ env:
 
 jobs:
   build_openwrt:
-    name: Build OpenWrt N1
+    name: Build OpenWrt N1 L
     runs-on: ubuntu-18.04
+    if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: master
+        uses: actions/checkout@main
 
       - name: Space cleanup
         env:
@@ -43,9 +43,6 @@ jobs:
         run: |
           git clone https://github.com/coolsnowwolf/lede.git lede
           git clone https://github.com/tuanqing/mknop.git n1
-          
-          cd lede
-          git reset --hard 8d1ac159344d36a53da18740ad273caab20788a4
 
       - name: Git Third Party Plugin
         run: |
@@ -57,20 +54,18 @@ jobs:
         run: |
           cd lede
           git clone https://github.com/tuanqing/install-program package/install-program
-          svn co https://github.com/tuanqing/lede-mod/trunk/lede patch
-          git apply patch/0002-distfeeds-use-mirrors.bfsu.edu.cn.patch
-          
+                    
           sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
       - name: SSH connection to Actions
-        uses: P3TERX/debugger-action@master
+        uses: P3TERX/debugger-action@main
         if: env.SSH_ACTIONS == 'true'
 
       - name: Generate Configuration_N1
         env:
-          CONFIG_FILE: 'n1.config'
+          CONFIG_FILE: 'n1_latest.config'
         run: |
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE lede/.config
           sed -i 's/^[ \t]*//g' lede/.config
@@ -116,32 +111,26 @@ jobs:
             echo "::set-env name=firmware_$((++i))::$filename"
           done
 
-      - name: Upload firmware @ kernel 4.18.7
-        uses: actions/upload-artifact@master
+      - name: Upload firmware @ kernel 4.19.134
+        uses: actions/upload-artifact@main
         with:
           name: ${{ env.firmware_1 }}
-          path: ./n1/out/4.18.7
-      
-      - name: Upload firmware @ kernel 4.19.106
-        uses: actions/upload-artifact@master
+          path: ./n1/out/4.19.134
+
+      - name: Upload firmware @ kernel 5.4.50
+        uses: actions/upload-artifact@main
         with:
           name: ${{ env.firmware_2 }}
-          path: ./n1/out/4.19.106
-      
-      - name: Upload firmware @ kernel 5.4.50
-        uses: actions/upload-artifact@master
-        with:
-          name: ${{ env.firmware_3 }}
           path: ./n1/out/5.4.50
 
 #      - name: Upload config file
-#        uses: actions/upload-artifact@master
+#        uses: actions/upload-artifact@main
 #        with:
 #          name: config
 #          path: ./lede/.config
 
       - name: Upload Packages
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@main
         with:
           name: OpenWrt_N1_Packages
           path: ./lede/bin/packages/

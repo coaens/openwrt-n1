@@ -65,7 +65,7 @@ jobs:
 
       - name: Generate Configuration_N1
         env:
-          CONFIG_FILE: 'n1_latest.config'
+          CONFIG_FILE: 'n1_stable.config'
         run: |
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE lede/.config
           sed -i 's/^[ \t]*//g' lede/.config

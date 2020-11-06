@@ -1,4 +1,4 @@
-name: N1-OpenWrt-CI APP
+name: N1-OpenWrt-CI A
 
 on:
 #  push:

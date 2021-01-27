@@ -12,7 +12,6 @@ on:
     types: edited
 
 env:
- SSH_ACTIONS: false
  TZ: Asia/Shanghai
 
 jobs:
@@ -57,10 +56,6 @@ jobs:
           sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-
-      - name: SSH connection to Actions
-        uses: P3TERX/debugger-action@main
-        if: env.SSH_ACTIONS == 'true'
 
       - name: Generate Configuration_N1
         env:

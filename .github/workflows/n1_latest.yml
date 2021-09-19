@@ -9,7 +9,7 @@ on:
 #  watch:
 #    types: started
   issues:
-    types: edited
+    types: closed
 
 env:
  TZ: Asia/Shanghai

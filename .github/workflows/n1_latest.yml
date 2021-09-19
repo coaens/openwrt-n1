@@ -94,7 +94,7 @@ jobs:
       - name: Build firmware
         run: |
           cd n1
-          cp lede/bin/targets/*/*/*.tar.gz ./openwrt
+          cp ../lede/bin/targets/*/*/*.tar.gz ./openwrt
           sudo ./gen_openwrt -d -k latest
           
           devices=("phicomm-n1" "rk3328" "s9xxx" "vplus")
@@ -117,7 +117,7 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: OpenWrt_N1_Targets
-          path: n1/out/phicomm-n1
+          path: ./n1/out/phicomm-n1
 
       - name: Upload Packages
         uses: actions/upload-artifact@main

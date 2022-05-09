@@ -140,7 +140,7 @@ jobs:
         env:
           OPENWRT_ARMVIRT: ./lede/bin/targets/*/*/*.tar.gz
           PACKAGE_SOC: s905d
-          KERNEL_VERSION_NAME: 5.15.25_5.10.100
+          KERNEL_VERSION_NAME: 5.15.35_5.4.188
           
       # - name: Organize files
       #   id: organize

@@ -154,8 +154,14 @@ jobs:
       - name: Upload firmware directory
         uses: actions/upload-artifact@v2
         with:
-          name: OpenWrt_firmware
-          path: /opt/openwrt_packit/output/
+          name: OpenWrt_firmware_5.15
+          path: /opt/openwrt_packit/output/*5.15*
+          
+      - name: Upload firmware directory
+        uses: actions/upload-artifact@v2
+        with:
+          name: OpenWrt_firmware_5.4
+          path: /opt/openwrt_packit/output/*5.4*
             
 
       - name: Upload release asset

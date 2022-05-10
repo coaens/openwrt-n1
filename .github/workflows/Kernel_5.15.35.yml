@@ -141,7 +141,7 @@ jobs:
           OPENWRT_ARMVIRT: ./lede/bin/targets/*/*/*.tar.gz
           PACKAGE_SOC: s905d
           KERNEL_VERSION_NAME: 5.15.35_5.4.188
-          WHOAMI: coaens
+          WHOAMI: COAENS
           
       # - name: Organize files
       #   id: organize

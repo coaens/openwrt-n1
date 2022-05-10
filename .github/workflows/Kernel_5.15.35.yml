@@ -54,7 +54,7 @@ jobs:
         run: |
           git clone https://github.com/coolsnowwolf/lede.git lede
           cd lede
-          git checkout ce2fb409e0315e2f573b13584415f18b7cb7bd63
+          git checkout 3516c9aa8a3a19ed717bc888905f549dd7b98289
 
       - name: Git Third Party Plugin
         run: |

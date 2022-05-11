@@ -7,7 +7,7 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 # 
 
-name: OpenWrt-COAENS N1 5.15.35
+name: OpenWrt-COAENS N1 5.15.35 S
 
 on:
 #  push:
@@ -15,10 +15,10 @@ on:
 #      - master
 #  schedule:
 #    - cron: 0 20 * * 0
-  watch:
-    types: started
-#  issues:
-#    types: closed
+#  watch:
+#    types: started
+  issues:
+    types: closed
 
 env:
  TZ: Asia/Shanghai
@@ -76,12 +76,12 @@ jobs:
 
       - name: Generate Configuration
         env:
-          CONFIG_FILE: 'customize.config'
+          CONFIG_FILE: 'customize_s.config'
         run: |
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE lede/.config
           sed -i 's/^[ \t]*//g' lede/.config
           
-          chmod +x ./diy.sh && ./diy.sh
+          chmod +x ./diy_s.sh && ./diy_s.sh
           
           cd lede && cat .config
           make defconfig
